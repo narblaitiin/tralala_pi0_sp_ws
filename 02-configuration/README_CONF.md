@@ -20,8 +20,8 @@ You will need to register a new device in your application (with ABP activation 
 
     - After that, you have to add a new end device on this application. You have to complete the various fields using the available data below in manually mode :
         Frequency Plan                  Europe 863-870 MHz (SF9 for RX2 - Recommended)
-        LoRaWAN Version                 MAC V1.0
-        Regional Parameter Version      PHY V1.0
+        LoRaWAN Version                 MAC V1.0 (LoRaWAN Specification 1.0.0)
+        Regional Parameter Version      PHY V1.0 (TS001 Technical Specification 1.0.0)
         Activation by personalization   ABP
         Application ID                  your application ID
         Device UI number 1              random value for 8-byte address (experimental node)
