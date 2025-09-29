@@ -53,7 +53,7 @@ It also contains the schematic of the Solar Pi Platter board and different tutor
 
 **Schematic**
 
-This file (pi_platter_sch.pdf) contains the electrical schematic of Solar Pi Platter board from danjuliodesigns. According https://www.waveshare.com/wiki/Environment_Sensor_HAT, environment_sensor_hat_sch.pdf give you the schematic of the module.
+This file (pi_platter_sch.pdf) contains the electrical schematic of Solar Pi Platter board from danjuliodesigns. According to https://www.waveshare.com/wiki/Environment_Sensor_HAT, environment_sensor_hat_sch.pdf give you the schematic of the module.
 
 **Tutorial**
 
