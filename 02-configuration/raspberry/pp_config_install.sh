@@ -9,6 +9,7 @@
 # version 1.6 - 16/12/22 (display current CPU load and CPU temperature)
 # version 1.7 - 05/01/23 (change Stress Terminal UI install)
 # version 1.8 - 20/01/23 (activate UART)
+# version 1.9 - 29/09/25 (change name of github folder)
 
 if [ "$EUID" -ne 0 ]
   then echo "Please this script needs for root authorisations, execute it as root."
@@ -27,7 +28,7 @@ sudo apt-get update
 
 # talkpp and ppd firmwares install
 sudo apt-get install libudev-dev
-cd ../solar_pi0_ws_abp/02-configuration/talkpp
+cd ../tralala_pi0_sp_ws/02-configuration/talkpp
 gcc -o talkpp talkpp.c -ludev
 sudo mv talkpp /usr/local/bin
 gcc -o ppd ppd.c -ludev
