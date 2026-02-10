@@ -1,17 +1,15 @@
 #! /usr/bin/env python3
 # send physical data from sensor to LoRaWAN TTN by ABP identification
-# Pi Platter board wakes up Pi zero, then Pi zero takes measurements and send to TTN application. Once it's done, Pi Platter board shutdown Pi zero
-# version 1.0 - 23/11/21
-# version 1.2 - 26/09/22 (ß)
-# version 1.3 - 12/12/22 (button off and poweroff the ssd1306 display after test)
+# version 1.0 - 10/02/26
 
-import adafruit_ssd1306, board, busio
+import adafruit_ssd1306, board, busio, time
 import BME280       # measuring temperature, humidity, and air pressure sensor
 import LTR390       # UV sensor
 import TSL2591      # digital ambient light sensor, for measuring IR and visible light
 import SGP40        # VOC sensor
 
 from adafruit_tinylora.adafruit_tinylora import TTN, TinyLoRa
+from time import sleep
 
 def getPayloadMockSensor():
 
@@ -117,7 +115,10 @@ height = display.height
 
 # 6b array to store sensor data
 data = bytearray(13)
-packet = None
-sendDataTTN(getPayloadMockSensor())
+
+for meas in range (0, 10, 1):
+    packet = None
+    sendDataTTN(getPayloadMockSensor())
+    time.sleep()
 
 display.poweroff()

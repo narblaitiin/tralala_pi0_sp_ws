@@ -1,20 +1,14 @@
 #! /usr/bin/python
-# test for waveshare environment hat
+# test for waveshare environment sensor hat (temperature & humidity, air pressure, ambient light intensity, VOC, IR ray, UV ray)
 # version 1.0 - 23/01/25
 
-import time, busio, board
 import ICM20948     # 3-axis accelerometer, 3-axis gyroscrope, 3-axis magnetometer
-import MPU925x      # 3-axis accelerometer, 3-axis gyroscrope, 3-axis magnetometer
 import BME280       # measuring temperature, humidity, and air pressure sensor
 import LTR390       # UV sensor
 import TSL2591      # digital ambient light sensor, for measuring IR and visible light
 import SGP40        # VOC sensor
-from PIL import Image,ImageDraw,ImageFont
-import math
 import smbus
 
-MPU_VAL_WIA = 0x71
-MPU_ADD_WIA = 0x75
 ICM_VAL_WIA = 0xEA
 ICM_ADD_WIA = 0x00
 ICM_SLAVE_ADDRESS = 0x68
@@ -22,19 +16,16 @@ bus = smbus.SMBus(1)
 
 bme280 = BME280.BME280()
 bme280.get_calib_param()
+
 light = TSL2591.TSL2591()
 uv = LTR390.LTR390()
+
 sgp = SGP40.SGP40()
 
-device_id1 = bus.read_byte_data(int(ICM_SLAVE_ADDRESS), int(ICM_ADD_WIA))
-device_id2 = bus.read_byte_data(int(ICM_SLAVE_ADDRESS), int(MPU_ADD_WIA))
-if device_id1 == ICM_VAL_WIA:
-    mpu = ICM20948.ICM20948()
-    print("ICM20948 9-DOF I2C address:0X68")
-elif device_id2 == MPU_VAL_WIA:
-    mpu = MPU925x.MPU925x()
-    print("MPU925x 9-DOF I2C address:0X68")
+device_id = bus.read_byte_data(int(ICM_SLAVE_ADDRESS), int(ICM_ADD_WIA))
+icm = ICM20948.ICM20948()
 
+print("ICM20948 9-DOF I2C address:0X68")
 print("TSL2591 Light I2C address:0X29")
 print("LTR390 UV I2C address:0X53")
 print("SGP40 VOC I2C address:0X59")
@@ -56,19 +47,19 @@ try:
         gas = round(sgp.raw(), 2)
         
         icm = []
-        icm = mpu.getdata()
+        icm = icm.getdata()
         
         print("==================================================")
-        print("pressure : %7.2f hPa" %pressure)
-        print("temp : %-6.2f ℃" %temp)
-        print("hum : %6.2f ％" %hum)
-        print("lux : %d " %lux)
-        print("uv : %d " %UVS)
-        print("gas : %6.2f " %gas)
-        print("Roll = %.2f , Pitch = %.2f , Yaw = %.2f" %(icm[0],icm[1],icm[2]))
-        print("Acceleration: X = %d, Y = %d, Z = %d" %(icm[3],icm[4],icm[5]))
-        print("Gyroscope:     X = %d , Y = %d , Z = %d" %(icm[6],icm[7],icm[8]))
-        print("Magnetic:      X = %d , Y = %d , Z = %d" %(icm[9],icm[10],icm[11]))
+        print("pressure: %7.2f hPa" %pressure)
+        print("temp: %-6.2f ℃" %temp)
+        print("hum: %6.2f ％" %hum)
+        print("lux: %d " %lux)
+        print("uv: %d " %UVS)
+        print("gas: %6.2f " %gas)
+        print("roll = %.2f , pitch = %.2f , Yaw = %.2f" %(icm[0],icm[1],icm[2]))
+        print("acceleration: X = %d, Y = %d, Z = %d" %(icm[3],icm[4],icm[5]))
+        print("gyroscope: X = %d , Y = %d , Z = %d" %(icm[6],icm[7],icm[8]))
+        print("magnetic: X = %d , Y = %d , Z = %d" %(icm[9],icm[10],icm[11]))
 
 
 except KeyboardInterrupt:

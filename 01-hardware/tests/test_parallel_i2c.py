@@ -3,12 +3,11 @@
 # version 1.0 - 19/11/21
 # version 1.1 - 25/11/21 (delete link buttons)
 # version 1.2 - 28/11/22 (poweroff the ssd1306 display after test)
-# version 1.3 - 23/01/25 (change with bme280 mounted on wvashare environment hat)
+# version 1.3 - 23/01/25 (change with bme280 mounted on waveshare environment hat)
 
 # import time, busio, board, adafruit_ssd1306, adafruit_bmp3xx
-import time, busio, board, adafruit_ssd1306, BME280
+import time, board, adafruit_ssd1306, BME280
 from digitalio import DigitalInOut
-from busio import I2C
 from time import sleep
  
 # create the I2C interface.

@@ -43,7 +43,7 @@ arg = '-f'
 MYDATE = command(arg)
 
 # print in file
-with open('batt.txt', 'a') as f:
+with open('../04-measure/data/batt_info.txt', 'a') as f:
     f.write(str(MYDATE))
     f.write('\n')
 
@@ -52,16 +52,16 @@ arg = 'B'
 BATT = str(command(arg))
 
 # print in file
-with open('batt.txt', 'a') as f:
+with open('../04-measure/data/batt_info.txt', 'a') as f:
     f.write(BATT)
     f.write('\n')
 
 ITR = 1
 
-while ITR < 200:
+while ITR < 288:
     # Transmit mode - Idle mode, Sleep mode, Listen mode
-    rfm9x.send(bytes("Hello World!\r\n","utf-8"))
-    #rfm9x.idle()
+    #rfm9x.send(bytes("Hello World!\r\n","utf-8"))
+    rfm9x.idle()
     #rfm9x.sleep()
     #rfm9x.listen()
 
@@ -74,14 +74,14 @@ while ITR < 200:
     BATT = BATTWARN
 
     # print in file
-    with open('batt.txt', 'a') as f:
+    with open('../04-measure/data/batt_info.txt', 'a') as f:
         f.write(BATT)
         f.write('\n')
     ITR = ITR + 1
     #print(ITR)
     # 1 measurement every xx secondes
-    time.sleep(60)
+    time.sleep(300)
     
-with open('batt.txt', 'a') as f:
+with open('../04-measure/data/batt_info.txt', 'a') as f:
     f.write(str(ITR))
     f.write('\n')

@@ -33,10 +33,12 @@ According to python3 is installed, run these scripts to chipset radio (RFM95) an
 
 To test the LoRa device (both sending and receiving), we need to execute the **test_rfm9x.py**. Then, after that, we have to look at the screen and see the output. If the radio module is not detected, it will display RFM69: ERROR. However, if everything works correctly and you press the three buttons (one by one) you should see "ada fruit radio". If you are able to see these messages the hardware should be ready to start working as well as the libraries and dependencies..
 
-To verify that you receive the packets on your TTN application, run **test_send_ttn_abp.py**.
+To verify that you receive the packets on your TTN application, run **test_random_ttn_abp.py**.
 
-## Test Waveshare Sensor Hat module
+## Test Waveshare Environment Sensor Hat module
 According to python3 is installed, run **test_sensors.py** to test if the environment sensor module gives good values. Then the values related to the current environment will be printed.
+
+Then, after that, you can also allow to test if the sensor data is received and readable on the TTN application. If the data is readable in a human-readable format, we can also validate the payload decoder. To do that, just run **test_data_ttn_abp.py**.
 
 # Description of datasheet/schematic/tutorial
 This folder contains datasheet of the only environment sensors module of our project (Waveshare Environment Sensor Hat) and the LoRa chipset radio (RFM95W inlcude on Adafruit's LoRa Radio Bonnet).

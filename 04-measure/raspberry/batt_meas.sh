@@ -27,14 +27,17 @@ echo Pi Zero ACT LED OFF
 #echo 0 > /sys/class/leds/led0/brightness          			    # turn on
 #echo Pi Zero ACT LED ON
 
+
+cd ../solar_pi0_ws_abp/04-measure/data
+
 #MYDATE=$(talkpp -t)
 MYDATE=$(talkpp -s)
 MYDATE=$(talkpp -f)
-echo $MYDATE >> batt.txt
+echo $MYDATE >> batt_info.txt
 
 ITR=1
 BATT=$(talkpp -c B)
-echo $BATT >> batt.txt
+echo $BATT >> batt_info.txt
 
 # issue when we test battery level value (warn in file text)
 # simple while loop with x iterations
@@ -43,7 +46,7 @@ while [ $ITR -le 288 ]
 do
 	echo $ITR
 	BATT=$(talkpp -c B)
-	echo $BATT >> batt.txt
+	echo $BATT >> batt_info.txt
 	((ITR++))
 	# 1 measurement every 5 minutes 
 	sleep 300
