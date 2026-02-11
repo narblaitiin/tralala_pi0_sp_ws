@@ -32,7 +32,7 @@ cd ../tralala_pi0_sp_ws/02-configuration/talkpp
 gcc -o talkpp talkpp.c -ludev
 sudo mv talkpp /usr/local/bin
 gcc -o ppd ppd.c -ludev
-sudo mv ppd /usr/local/bin
+sudo mv ppd /usr/local/binls
 cd ../..
 
 # python install and dependencies
