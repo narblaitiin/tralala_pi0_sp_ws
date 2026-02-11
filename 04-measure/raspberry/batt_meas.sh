@@ -12,9 +12,9 @@ echo bluetooth disable
 #echo bluetooth enable
 
 # disable HDMI output
-sudo /usr/bin/tv/service -o
+dtparam=hdmi=off
 echo hdmi disable
-#sudo /usr/bin/tvservice -p
+#dtparam=hdmi=on
 #echo hdmi enable
 
 echo start battery level measurement

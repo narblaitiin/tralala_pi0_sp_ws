@@ -10,6 +10,7 @@
 # version 1.7 - 05/01/23 (change Stress Terminal UI install)
 # version 1.8 - 20/01/23 (activate UART)
 # version 1.9 - 29/09/25 (change name of github folder)
+# version 1.10 - 11/02/26 (bug fixes about env variable with pip3 install)
 
 if [ "$EUID" -ne 0 ]
   then echo "Please this script needs for root authorisations, execute it as root."
@@ -72,10 +73,6 @@ console=serial0
 echo "dtoverlay=disable-bt" >> /boot/config.txt
 
 # disable HDMI output
-echo "/usr/bin/tvservice -o" >> /etc/rc.local
-
-# disable LED
-#echo "dtparam=act_led_trigger=none" >> /boot/config.txt
-#echo "dtparam=act_led_activelow=off" >> /boot/config.txt
+echo "dtparam=hdmi=off" >> //boot/config.txt
 
 sudo reboot
