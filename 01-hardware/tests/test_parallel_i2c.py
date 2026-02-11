@@ -41,7 +41,7 @@ for meas in range (0,5,1):
     msg = ''
     msg += "Temperature: %-6.2f C\n" % temp
     msg += "Pressure: %7.2f hPa\n" % pressure
-    msg += "Humidity %6.2f ％\n" % hum
+    msg += "Humidity: %6.2f ％\n" % hum
 
     display.fill(0)
     display.text(msg, 0, 0, 1)

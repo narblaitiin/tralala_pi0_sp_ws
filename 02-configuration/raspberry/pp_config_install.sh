@@ -37,16 +37,17 @@ cd ../..
 
 # python install and dependencies
 sudo apt-get install -y python3-pip python3-dev python3-spidev python3-setuptools python3-rpi.gpio
-sudo pip3 install python-dotenv
+sudo pip3 install python-dotenv --break-system-packages
 
 # packets to test RPi CPU for stress testing
 sudo apt-get -y install stress s-tui
 
-# LoRa Bonnet dependencies 
-sudo pip3 install adafruit-circuitpython-ssd1306
-sudo pip3 install adafruit-circuitpython-framebuf
-sudo pip3 install adafruit-circuitpython-rfm9x
-sudo pip3 install adafruit-circuitpython-tinylora
+# LoRa Bonnet dependencies
+sudo pip3 install adafruit-blinka --break-system-packages
+sudo pip3 install adafruit-circuitpython-ssd1306 --break-system-packages
+sudo pip3 install adafruit-circuitpython-framebuf --break-system-packages
+sudo pip3 install adafruit-circuitpython-rfm9x --break-system-packages
+sudo pip3 install adafruit-circuitpython-tinylora --break-system-packages
 
 # Waveshare Sensor Hat dependencies
 sudo apt-get install python3-smbus
