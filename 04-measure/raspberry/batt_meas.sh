@@ -12,20 +12,20 @@ echo bluetooth disable
 #echo bluetooth enable
 
 # disable HDMI output
-sudo /usr/bin/tvservice -o
+sudo /usr/bin/tv/service -o
+echo hdmi disable
 #sudo /usr/bin/tvservice -p
+#echo hdmi enable
 
-# go to measurement file directory
-cd ~/tralala_pi0_sp_ws/04-measure/data
-
+echo start battery level measurement
 #MYDATE=$(talkpp -t)
 MYDATE=$(talkpp -s)
 MYDATE=$(talkpp -f)
-echo $MYDATE >> batt_info.txt
+echo $MYDATE >> ~/tralala_pi0_sp_ws/04-measure/data/batt_info.txt
 
 ITR=1
 BATT=$(talkpp -c B)
-echo $BATT >> batt_info.txt
+echo $BATT >> ~/tralala_pi0_sp_ws/04-measure/data/batt_info.txt
 
 # issue when we test battery level value (warn in file text)
 # simple while loop with x iterations
@@ -34,7 +34,7 @@ while [ $ITR -le 288 ]
 do
 	echo $ITR
 	BATT=$(talkpp -c B)
-	echo $BATT >> batt_info.txt
+	echo $BATT >> ~/tralala_pi0_sp_ws/04-measure/data/batt_info.txt
 	((ITR++))
 	# 1 measurement every 5 minutes 
 	sleep 300
