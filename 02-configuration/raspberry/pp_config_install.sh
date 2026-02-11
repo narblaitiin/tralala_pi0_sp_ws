@@ -28,12 +28,9 @@ sudo apt-get update
 
 # talkpp and ppd firmwares install
 sudo apt-get install libudev-dev
-cd ../tralala_pi0_sp_ws/02-configuration/talkpp
-gcc -o talkpp talkpp.c -ludev
+cd ~/tralala_pi0_sp_ws/02-configuration/talkpp
 sudo mv talkpp /usr/local/bin
-gcc -o ppd ppd.c -ludev
 sudo mv ppd /usr/local/binls
-cd ../..
 
 # python install and dependencies
 sudo apt-get install -y python3-pip python3-dev python3-spidev python3-setuptools python3-rpi.gpio
