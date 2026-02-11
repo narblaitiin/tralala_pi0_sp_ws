@@ -30,7 +30,8 @@ sudo apt-get update
 sudo apt-get install libudev-dev
 cd ~/tralala_pi0_sp_ws/02-configuration/talkpp
 sudo mv talkpp /usr/local/bin
-sudo mv ppd /usr/local/binls
+sudo mv ppd /usr/local/bin
+cd ~
 
 # python install and dependencies
 sudo apt-get install -y python3-pip python3-dev python3-spidev python3-setuptools python3-rpi.gpio
