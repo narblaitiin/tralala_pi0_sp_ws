@@ -4,6 +4,7 @@
 # version 1.0 - 23/11/21
 # version 1.2 - 26/09/22 (ß)
 # version 1.3 - 12/12/22 (button off and poweroff the ssd1306 display after test)
+# version 1.4 11/02/26 (add gas measurement)
 
 import adafruit_ssd1306, board, busio
 import BME280       # measuring temperature, humidity, and air pressure sensor

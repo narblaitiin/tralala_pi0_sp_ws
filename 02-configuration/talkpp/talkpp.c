@@ -341,7 +341,7 @@ void SetAlarmString(int fd, char* alarmP) {
     char buf[80];
 
     // Try to convert the alarm time into a timestamp
-    if (strftime(alarmP, "%m%d%H%M%Y.%S", &ts)) {
+    if (strptime(alarmP, "%m%d%H%M%Y.%S", &ts)) {
         // Convert to epoch time
         if ((t = mktime(&ts)) != -1) {
             // Send it to the device

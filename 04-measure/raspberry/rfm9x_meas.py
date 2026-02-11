@@ -3,6 +3,7 @@
 # version 1.0 - 29/11/22
 # version 1.1 - 16/12/22 (delete warning of talkpp -c B value in while loop)
 # version 1.2 - 23/01/23 (bug fixe about returned value of talkpp)
+# version 1.3 - 11/02/26 (change path of file directory)
 
 import time
 import busio
@@ -42,8 +43,10 @@ MYDATE = command(arg)
 arg = '-f'
 MYDATE = command(arg)
 
+path = '/home/admin/tralala_pi0_sp_ws/04-measure/data/batt_info.txt'
+
 # print in file
-with open('../04-measure/data/batt_info.txt', 'a') as f:
+with open(path, 'a') as f:
     f.write(str(MYDATE))
     f.write('\n')
 
@@ -52,7 +55,7 @@ arg = 'B'
 BATT = str(command(arg))
 
 # print in file
-with open('../04-measure/data/batt_info.txt', 'a') as f:
+with open(path, 'a') as f:
     f.write(BATT)
     f.write('\n')
 
@@ -74,7 +77,7 @@ while ITR < 288:
     BATT = BATTWARN
 
     # print in file
-    with open('../04-measure/data/batt_info.txt', 'a') as f:
+    with open(path, 'a') as f:
         f.write(BATT)
         f.write('\n')
     ITR = ITR + 1
@@ -82,6 +85,6 @@ while ITR < 288:
     # 1 measurement every xx secondes
     time.sleep(300)
     
-with open('../04-measure/data/batt_info.txt', 'a') as f:
+with open(path, 'a') as f:
     f.write(str(ITR))
     f.write('\n')

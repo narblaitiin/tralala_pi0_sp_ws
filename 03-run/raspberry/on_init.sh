@@ -71,8 +71,8 @@ if [ $BATT -lt 3.45 ]; then
 else
     echo "run python script to read sensor and send data to TTN"
     # initialisation of our raspberry pi zero
-	echo $MYDATE,$BATT,$STATUS >> ../solar_pi0_ws_abp/03-run/data/power_info.txt
-	cd ../solar_pi0_ws_abp/03-run/raspberry
+	echo $MYDATE,$BATT,$STATUS >> ~/tralala_pi0_sp_ws/03-run/data/power_info.txt
+	cd ~/tralala_pi0_sp_ws/03-run/raspberry
     sudo python lorawan_sensor.py
 fi
 

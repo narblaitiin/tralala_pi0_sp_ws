@@ -2,6 +2,7 @@
 # first script test to measure battery discharge time
 # version 1.0 - 16/12/22 (add command to disable unnecessary services)
 # version 1.1 - 23/01/23 (change the test of while loop)
+# version 1.2 - 11/02/26 (change command to enable/disable hdmi)
 
 echo beginning of script
 
