@@ -15,20 +15,8 @@ echo bluetooth disable
 sudo /usr/bin/tvservice -o
 #sudo /usr/bin/tvservice -p
 
-# set the Pi Zero ACT LED trigger to 'none'.
-echo none | sudo tee /sys/class/leds/led0/trigger				# turn off			
-echo Pi Zero ACT LED trigger OFF
-#echo default-on| sudo tee /sys/class/leds/led0/trigger			# turn on
-#echo Pi Zero ACT LED trigger ON
-
-# Turn off the Pi Zero ACT LED.
-echo 1 | sudo tee /sys/class/leds/led0/brightness  				# turn off
-echo Pi Zero ACT LED OFF
-#echo 0 > /sys/class/leds/led0/brightness          			    # turn on
-#echo Pi Zero ACT LED ON
-
-
-cd ../solar_pi0_ws_abp/04-measure/data
+# go to measurement file directory
+cd ~/tralala_pi0_sp_ws/04-measure/data
 
 #MYDATE=$(talkpp -t)
 MYDATE=$(talkpp -s)

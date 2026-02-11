@@ -30,7 +30,9 @@ sudo apt-get update
 sudo apt-get install libudev-dev
 cd ~/tralala_pi0_sp_ws/02-configuration/talkpp
 sudo mv talkpp /usr/local/bin
+sudo chmod -R 777 /usr/local/bin/talkpp
 sudo mv ppd /usr/local/bin
+sudo chmod -R 777 /usr/local/bin/ppd
 cd ~
 
 # python install and dependencies
