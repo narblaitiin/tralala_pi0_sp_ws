@@ -1,4 +1,4 @@
-#! /usr/bin/env python3
+#! /usr/binn/sh
 # solar_pi0_ws install requirements
 # version 1.0 - 19/10/20
 # version 1.1 - 26/10/21 (bug fixes of talkpp and ppd path install)
@@ -10,7 +10,7 @@
 # version 1.7 - 05/01/23 (change Stress Terminal UI install)
 # version 1.8 - 20/01/23 (activate UART)
 # version 1.9 - 29/09/25 (change name of github folder)
-# version 1.10 - 11/02/26 (bug fixes about env variable with pip3 install)
+# version 1.10 - 11/02/26 (bug fixes about env variable with pip3 install and change directory command)
 
 if [ "$EUID" -ne 0 ]
   then echo "Please this script needs for root authorisations, execute it as root."
@@ -29,12 +29,11 @@ sudo apt-get update
 
 # talkpp and ppd firmwares install
 sudo apt-get install libudev-dev
-cd ~/tralala_pi0_sp_ws/02-configuration/talkpp
+~/tralala_pi0_sp_ws/02-configuration/talkpp
 sudo mv talkpp /usr/local/bin
 sudo chmod -R 777 /usr/local/bin/talkpp
 sudo mv ppd /usr/local/bin
 sudo chmod -R 777 /usr/local/bin/ppd
-cd ~
 
 # python install and dependencies
 sudo apt-get install -y python3-pip python3-dev python3-spidev python3-setuptools python3-rpi.gpio
