@@ -8,7 +8,7 @@
 echo beginning of script
 
 # sudoer permission
-sudo -s
+# sudo -s
 
 # times to start and stop each date are military format: HHMM
 STARTOFDAY=0800
