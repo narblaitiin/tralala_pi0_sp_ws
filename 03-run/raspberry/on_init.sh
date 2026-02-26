@@ -14,38 +14,29 @@
 
 echo beginning of script
 
-# sudoer permission
-sudo -s
-
 # times to start and stop each date are military format: HHMM
 STARTOFDAY=0800
 ENDOFDAY=2000
 
-# time (in seconds) between two measures
-TIMELAPSE=1800		# 30 mins
+# time (in seconds) between two data transmissions
+TIMELAPSE=900		# 15 mins
 
 # time (in seconds) between two battery test
-TIMELOWBATT=600		# 10 mins
+TIMELOWBATT=1800		# 30 mins
 
 # get the date from the RTC
-MYDATE=$(talkpp -t)			# device RTC with the current system clock --> test ?
+MYDATE=$(talkpp -t)			# device RTC with the current system clock
 MYHHMM=${MYDATE:4:4}
 
-echo "setup date from RTC"
 # set our date from the RTC
+echo "setup date from RTC"
 date $MYDATE
 
 # get the power-up reason from the board (along with other status)
 STATUS=$(talkpp -c S)
 
-# bail out of the script if we powered on because the user manually turned us on
-if [ $STATUS -ge 16 ]; then
-	# STATUS includes a power-up reason of "Button"
-	exit
-fi
-
-echo "setup wakeup and alarm"
 # set our next wakeup time
+echo "setup wakeup and alarm"
 if [ $MYHHMM -gt $ENDOFDAY ]; then
 	# getting dark: Set an alarm for tomorrow morning
 	talkpp -a $(date --date=tomorrow +%m%d$STARTOFDAY%Y.00)
@@ -54,28 +45,27 @@ else
 	talkpp -d $TIMELAPSE
 fi
 
-echo "alarm ON"
 # enable the alarm
+echo "alarm ON"
 talkpp -c C0=1
 
 # get the current board status
 STATUS=$(talkpp -c S)
 
-echo "battery test"
 # read battery voltage
+echo "battery test"
 BATT=$(talkpp -c B)
 
 if [ $BATT -lt 3.45 ]; then
     talkpp -d $TIMELOWBATT  # set to restart Pi Platter in 10 mins
     talkpp -c O=15  		# turn off Pi Platter in 30 seconds
 else
+	# initialisation of our raspberry pi zero
     echo "run python script to read sensor and send data to TTN"
-    # initialisation of our raspberry pi zero
 	echo $MYDATE,$BATT,$STATUS >> ~/tralala_pi0_sp_ws/03-run/data/power_info.txt
-	cd ~/tralala_pi0_sp_ws/03-run/raspberry
-    sudo python lorawan_sensor.py
+	python ~/tralala_pi0_sp_ws/01-hardware/tests/test_rfm9x.py
 fi
 
+# shutdown and then power off
 echo "shutdown Pi Platter board"
-# and finally shutdown and then power off
 talkpp -c O=15
