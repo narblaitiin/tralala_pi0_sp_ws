@@ -58,14 +58,14 @@ BATT=$(talkpp -c B)
 
 if [ $BATT -lt 3.45 ]; then
     talkpp -d $TIMELOWBATT  # set to restart Pi Platter in 10 mins
-    talkpp -c O=15  		# turn off Pi Platter in 30 seconds
+    talkpp -c O=30  		# turn off Pi Platter in 30 seconds
 else
 	# initialisation of our raspberry pi zero
     echo "run python script to read sensor and send data to TTN"
 	echo $MYDATE,$BATT,$STATUS >> ~/tralala_pi0_sp_ws/03-run/data/power_info.txt
-	python ~/tralala_pi0_sp_ws/01-hardware/tests/test_rfm9x.py
+	python ~/tralala_pi0_sp_ws/01-hardware/tests/test_data_ttn_abp.py
 fi
 
 # shutdown and then power off
 echo "shutdown Pi Platter board"
-talkpp -c O=15
+talkpp -c O=30

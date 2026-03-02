@@ -116,7 +116,7 @@ height = display.height
 # 6b array to store sensor data
 data = bytearray(13)
 
-for meas in range (0, 10, 1):
+for meas in range (0, 5, 1):
     packet = None
     sendDataTTN(getPayloadMockSensor())
     time.sleep()
