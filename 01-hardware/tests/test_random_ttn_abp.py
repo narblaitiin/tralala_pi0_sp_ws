@@ -5,7 +5,7 @@
 # version 1.2 - 20/07/22 (add Lora parameters (data rate) to test current consumption)
 # version 1.3 - 28/11/22 (bug fixes about TTN config)
 
-import board, busio, time
+import board, busio, time, random
 from digitalio import DigitalInOut
 from adafruit_tinylora.adafruit_tinylora import TTN, TinyLoRa
 
@@ -32,7 +32,8 @@ lora.frame_counter = 0
 lora.set_datarate("SF12BW125")
 
 for meas in range (0, 5, 1):
-    data = bytearray(b"\x43\x57\x54\x46")
+    #data = bytearray(b"\x43\x57\x54\x46")
+    data = random.randbytes(13)
     print("Sending packet...")
     lora.send_data(data, len(data), lora.frame_counter)
     lora.frame_counter +=1

@@ -26,6 +26,7 @@ TIMELOWBATT=1800		# 30 mins
 
 # get the date from the RTC
 MYDATE=$(talkpp -t)			# device RTC with the current system clock
+MYDATE=$(talkpp -s)			# set the Solar Pi Platter RTC from the Pi’s RTC
 MYHHMM=${MYDATE:4:4}
 
 # set our date from the RTC

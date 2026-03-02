@@ -4,7 +4,7 @@ function decodeUplink(input)
     var bytes = input.bytes;
 
     // check payload length (minimum 14 bytes needed here -> VTH samples)
-    if (bytes.length == 12) {
+    if (bytes.length == 13) {
         // decode the int16 values (big-endian representation)
         var pressure = (bytes[0] << 8) | bytes[1];
         if(bytes[2] === 0){
