@@ -57,21 +57,21 @@ sudo apt-get install i2c-tools
 # activate I2C ports
 echo "i2c-dev" >> /etc/modules
 echo "i2c-bcm2835" >> /etc/modules
-echo "dtparam=i2c_arm=on" >> /boot/config.txt
-echo "dtparam=i2c1=on" >> /boot/config.txt
-echo "dtparam=i2s=on" >> /boot/config.txt
+echo "dtparam=i2c_arm=on" >> /boot/firmware/config.txt
+echo "dtparam=i2c1=on" >> /boot/firmware/config.txt
+echo "dtparam=i2s=on" >> /boot/firmware/config.txt
 
 # activate SPI interface
-echo "dtparam=spi=on" >> /boot/config.txt
+echo "dtparam=spi=on" >> /boot/firmware/config.txt
 
 # activate UART
 enable_uart=1
 console=serial0
 
 # disable BLE
-echo "dtoverlay=disable-bt" >> /boot/config.txt
+echo "dtoverlay=disable-bt" >> /boot/firmware/config.txt
 
 # disable HDMI output
-echo "dtparam=hdmi=off" >> //boot/config.txt
+echo "dtparam=hdmi=off" >> /boot/firmware/config.txt
 
 sudo reboot
