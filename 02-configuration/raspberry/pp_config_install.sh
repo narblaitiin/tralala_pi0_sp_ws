@@ -55,23 +55,23 @@ sudo -H apt-get install python3-pil
 sudo apt-get install i2c-tools
 
 # activate I2C ports
-echo "i2c-dev" >> /etc/modules
-echo "i2c-bcm2835" >> /etc/modules
-echo "dtparam=i2c_arm=on" >> /boot/firmware/config.txt
-echo "dtparam=i2c1=on" >> /boot/firmware/config.txt
+sudo echo "i2c-dev" >> /etc/modules
+sudo echo "i2c-bcm2835" >> /etc/modules
+sudo echo "dtparam=i2c_arm=on" >> /boot/firmware/config.txt
+sudo sudo sudo echo "dtparam=i2c1=on" >> /boot/firmware/config.txt
 echo "dtparam=i2s=on" >> /boot/firmware/config.txt
 
 # activate SPI interface
-echo "dtparam=spi=on" >> /boot/firmware/config.txt
+sudo echo "dtparam=spi=on" >> /boot/firmware/config.txt
 
 # activate UART
 enable_uart=1
-console=serial0
+sudo console=serial0
 
 # disable BLE
-echo "dtoverlay=disable-bt" >> /boot/firmware/config.txt
+sudo echo "dtoverlay=disable-bt" >> /boot/firmware/config.txt
 
 # disable HDMI output
-echo "dtparam=hdmi=off" >> /boot/firmware/config.txt
+sudo echo "dtparam=hdmi=off" >> /boot/firmware/config.txt
 
 sudo reboot
