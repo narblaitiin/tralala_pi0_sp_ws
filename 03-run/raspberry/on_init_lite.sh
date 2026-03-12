@@ -18,9 +18,6 @@ echo beginning of script
 STARTOFDAY=0800
 ENDOFDAY=2000
 
-# time (in seconds) between two data transmissions
-TIMELAPSE=900		# 15 mins
-
 # time (in seconds) between two battery test
 TIMELOWBATT=1800		# 30 mins
 
@@ -50,22 +47,29 @@ fi
 echo "alarm ON"
 talkpp -c C0=1
 
+# beginning of the scripte of battery life
+echo "battery life test"
+
 # get the current board status
 STATUS=$(talkpp -c S)
 
 # read battery voltage
-echo "battery test"
 BATT=$(talkpp -c B)
 
-if [ $BATT -lt 3.45 ]; then
-    talkpp -d $TIMELOWBATT  # set to restart Pi Platter in 10 mins
-    talkpp -c O=30  		# turn off Pi Platter in 30 seconds
-else
-	# initialisation of our raspberry pi zero
-    echo "run python script to read sensor and send data to TTN"
-	echo $MYDATE,$BATT,$STATUS >> ~/tralala_pi0_sp_ws/03-run/data/power_info.txt
-	python ~/tralala_pi0_sp_ws/01-hardware/tests/test_data_ttn_abp.py
-fi
+# write the system state at the beginning of the script
+echo $MYDATE,$BATT,$STATUS >> ~/tralala_pi0_sp_ws/03-run/data/power_info.txt
+
+# infinite loop
+while;
+do
+	if [ $BATT -lt 3.45 ]; then
+    	talkpp -d $TIMELOWBATT  # set to restart Pi Platter in 10 mins
+    	talkpp -c O=30  		# turn off Pi Platter in 30 seconds
+	else
+		BATT=$(talkpp -c B)
+		echo $BATT >> ~/tralala_pi0_sp_ws/03-run/data/power_info.txt
+	fi
+done 
 
 # shutdown and then power off
 echo "shutdown Pi Platter board"
