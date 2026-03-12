@@ -63,7 +63,7 @@ echo $MYDATE,$BATT,$STATUS >> ~/tralala_pi0_sp_ws/03-run/data/power_info.txt
 while;
 do
 	if [ $BATT -lt 3.45 ]; then
-    	talkpp -d $TIMELOWBATT  # set to restart Pi Platter in 10 mins
+    	talkpp -d $TIMELOWBATT  # set to restart Pi Platter in 30 mins
     	talkpp -c O=30  		# turn off Pi Platter in 30 seconds
 	else
 		BATT=$(talkpp -c B)
