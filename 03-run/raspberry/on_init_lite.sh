@@ -1,11 +1,8 @@
 #!/bin/bash
 #
-# Shell script designed to take 3 measures within 1'30
-# using a BME680 sensor.
+# Shell script designed to take 1 measure of the voltage battery level within 15 minutes.
 #
-# The Solar Pi Platter wakes the Pi up every 30 minutes during the day and allows
-# the RFM95W LoRa module, taking 3 measures every 30 seconds, storing the power information in a file
-# file and sending to LoRa gateway server.
+# The Solar Pi Platter wakes the Pi up every 30 minutes during the day.
 #
 # The script is designed to be run by /etc/rc.local when the Pi boots.  It looks at
 # the power-up reason and does not execute if the Pi was powered on because the user
