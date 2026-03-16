@@ -4,11 +4,9 @@
 # using a BME680 sensor.
 #
 # The Solar Pi Platter wakes the Pi up every 30 minutes during the day and allows
-# the RFM95W LoRa module, taking 3 measures every 30 seconds, storing the power information in a file
-# file and sending to LoRa gateway server.
+# the RFM95W LoRa module, taking 3 measures every 30 seconds, storing the power information in a file and sending to LoRa gateway server.
 #
-# The script is designed to be run by /etc/rc.local when the Pi boots.  It looks at
-# the power-up reason and does not execute if the Pi was powered on because the user
+# The script is designed to be run as a service (see README_RUN) when the Pi boots.  It looks at the power-up reason and does not execute if the Pi was powered on because the user
 # powered up using the Solar Pi Platter button.
 #
 
@@ -21,8 +19,8 @@ ENDOFDAY=2000
 # time (in seconds) between two data transmissions
 TIMELAPSE=900		# 15 mins
 
-# time (in seconds) between two battery test
-TIMELOWBATT=1800		# 30 mins
+# time (in seconds) between two battery test if low battery level was detected
+TIMELOWBATT=1800	# 30 mins
 
 # get the date from the RTC
 MYDATE=$(talkpp -t)			# device RTC with the current system clock
@@ -42,7 +40,7 @@ if [ $MYHHMM -gt $ENDOFDAY ]; then
 	# getting dark: Set an alarm for tomorrow morning
 	talkpp -a $(date --date=tomorrow +%m%d$STARTOFDAY%Y.00)
 else
-	# set an alarm for 30 minutes from now
+	# set an alarm for 15 minutes from now
 	talkpp -d $TIMELAPSE
 fi
 
@@ -58,7 +56,7 @@ echo "battery test"
 BATT=$(talkpp -c B)
 
 if [ $BATT -lt 3.45 ]; then
-    talkpp -d $TIMELOWBATT  # set to restart Pi Platter in 10 mins
+    talkpp -d $TIMELOWBATT  # set to restart Pi Platter in 30 mins
     talkpp -c O=30  		# turn off Pi Platter in 30 seconds
 else
 	# initialisation of our raspberry pi zero

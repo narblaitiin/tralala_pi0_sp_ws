@@ -15,7 +15,7 @@ echo beginning of script
 STARTOFDAY=0800
 ENDOFDAY=2000
 
-# time (in seconds) between two battery test
+# time (in seconds) between two battery test if low battery level was detected
 TIMELOWBATT=1800		# 30 mins
 
 # get the date from the RTC
@@ -65,6 +65,7 @@ do
 	else
 		BATT=$(talkpp -c B)
 		echo $BATT >> ~/tralala_pi0_sp_ws/03-run/data/power_info.txt
+		sleep 5m		# delay betweent two measrurements (5 mins)
 	fi
 done 
 
