@@ -4,7 +4,7 @@
 #
 # The Solar Pi Platter wakes the Pi up every 30 minutes during the day.
 #
-# The script is designed to be run by /etc/rc.local when the Pi boots.  It looks at
+# The script is designed to be run as a service (see README_RUN) when the Pi boots.  It looks at
 # the power-up reason and does not execute if the Pi was powered on because the user
 # powered up using the Solar Pi Platter button.
 #
